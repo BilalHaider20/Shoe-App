@@ -3,14 +3,15 @@ import { StyleSheet, Text, TouchableOpacity, View,Image,ScrollView,FlatList } fr
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BackIcon from '../Assets/SVG/BackIcon';
-import HeartIcon from '../Assets/SVG/HeartIcon';
+import CartIcon from '../Assets/SVG/CartIcon';
 import { SuggestedProducts } from '../Data/SuggestedProducts';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight } from 'react-native-reanimated';
+import ProductDetailsFooter from '../components/ProductDetailsFooter';
 
 const ProductDetails = () => {
   const { params } = useRoute();
   const navigation =useNavigation();
-  const [isFav, setisFav] = useState(false);
+  
   const data= params?.data;
   return (
     <View style={styles.container}>
@@ -26,8 +27,8 @@ const ProductDetails = () => {
             </Animated.View>
 
             <Animated.View entering={FadeInRight.delay(100).duration(300)}>
-            <TouchableOpacity style={styles.IconBox} onPress={()=>setisFav(!isFav)}>
-              <HeartIcon isFav={isFav} />
+            <TouchableOpacity style={styles.IconBox} onPress={()=>navigation.navigate('Cart')} >
+              <CartIcon  />
             </TouchableOpacity>
             </Animated.View>
 
@@ -43,11 +44,12 @@ const ProductDetails = () => {
       {/* //Product Name*/}
       <ScrollView >
       <View style={styles.TitleBox} >
+        <View >
         <Animated.Text entering={FadeInLeft.delay(200).duration(300)} style={styles.ProductName} >{data.title}</Animated.Text>
-        <View style={{alignItems:'center'}}>
         <Animated.Text entering={FadeInRight.delay(200).duration(300)} style={styles.Price} ><Text style={{color:'#24a8af'}} >$</Text>{data.price}</Animated.Text>
-        <Animated.Text entering={FadeInRight.delay(200).duration(300)} style={styles.rating}>⭐ {data.rating}</Animated.Text>
         </View>
+        
+        <Animated.Text entering={FadeInRight.delay(200).duration(300)} style={styles.rating}>⭐ {data.rating}</Animated.Text>
       </View>
 
       {/* Product Description */}
@@ -56,11 +58,11 @@ const ProductDetails = () => {
       </View>
 
       {/* Button */}
-      <Animated.View entering={FadeInLeft.delay(200).duration(300)}>
+      {/* <Animated.View entering={FadeInLeft.delay(200).duration(300)}>
       <TouchableOpacity style={styles.Btn}>
         <Text style={styles.BtnText} >Shop Now</Text>
       </TouchableOpacity>
-      </Animated.View>
+      </Animated.View> */}
 
       {/* Suggested Products */}
       <Animated.Text entering={FadeInLeft.delay(200).duration(300)} style={{color:'#000',
@@ -82,6 +84,7 @@ const ProductDetails = () => {
       </Animated.View>
 
       </ScrollView>
+      <ProductDetailsFooter data={data}/>
     </View>
   )
 }
@@ -134,13 +137,14 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     paddingHorizontal:15,
-    paddingVertical:5,
+    paddingVertical:15,
     alignItems:'center'
   },
   ProductName:{
-    fontSize:26,
+    fontSize:24,
     fontWeight:'bold',
-    color:'#000'
+    color:'#000',
+    marginBottom:8
   },
   Price:{
     fontSize:22,
@@ -154,11 +158,12 @@ const styles = StyleSheet.create({
   },
   descriptionBox:{
     paddingVertical:15,
-    paddingHorizontal:15
+    paddingLeft:15,
+    paddingRight:60
   },
   ProductDescription:{
     fontSize:16,
-    color:'#000',
+    color:'#707B81',
     textAlign:'Left'
 
   },

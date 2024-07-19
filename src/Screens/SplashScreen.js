@@ -1,18 +1,24 @@
+import React,{useEffect} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import LottieView from 'lottie-react-native'
 import { useNavigation } from '@react-navigation/native'
 const SplashScreen = () => {
-    const {navigate} = useNavigation();
-    setTimeout(()=>{
-        navigate('Home');
-    },3000)
+    const navigation = useNavigation();
+    useEffect(() => {
+      
+      setTimeout(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
+        });
+      }, 3000); 
+    }, [navigation]);
   return (
     <View style={styles.container}>
       
       <LottieView source={require('../Assets/Animations/ShowAnimation.json')}
         style={{height:300,width:300}}
-        autoPlay loop
+        autoPlay
       />
     </View>
   )

@@ -1,9 +1,9 @@
 import React from 'react' 
 import { View, Text,StyleSheet, FlatList, TouchableOpacity } from 'react-native'
   import MenuIcon from '../Assets/SVG/MenuIcon';
- import OptionIcon from '../Assets/SVG/OptionIcon';
+ import CartIcon from '../Assets/SVG/CartIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ProductCart from '../components/ProductCart';
+import ProductCart from '../components/ProductCard';
 import { productData } from '../Data/ProductData';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
@@ -19,8 +19,8 @@ const HomeScreen = () => {
             <Animated.View entering={FadeInLeft.delay(100).duration(400)}>
               <MenuIcon />
             </Animated.View>
-            <Animated.View entering={FadeInRight.delay(100).duration(400)}>
-            < OptionIcon/>
+            <Animated.View entering={FadeInRight.delay(100).duration(400)} >
+            < CartIcon  onPress={()=>navigation.navigate('Cart')}/>
             </Animated.View>
             </View>
        <View style={styles.headerWrapper}>

@@ -2,13 +2,13 @@ import * as React from 'react';
 import Svg, {Circle, Path} from 'react-native-svg';
 
 const CartIcon = props => (
-  <Svg width={35} height={35} viewBox="0 0 512 512" {...props}>
+  <Svg width={40} height={40} viewBox="0 0 512 512" {...props}>
     <Circle
       cx={176}
       cy={416}
       r={16}
       fill="none"
-      stroke="#4D4D4C"
+      stroke="#000"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={32}
@@ -18,14 +18,14 @@ const CartIcon = props => (
       cy={416}
       r={16}
       fill="none"
-      stroke="#4D4D4C"
+      stroke="#000"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={32}
     />
     <Path
       fill="none"
-      stroke="#4D4D4C"
+      stroke="#000"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={32}
@@ -33,7 +33,7 @@ const CartIcon = props => (
     />
     <Path
       fill="none"
-      stroke="#4D4D4C"
+      stroke="#000"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={32}
